@@ -14,6 +14,7 @@ public class Employee {
     private String carNumber;
 
     public Employee() {
+        // Do nothing
     }
 
     public String getName() {

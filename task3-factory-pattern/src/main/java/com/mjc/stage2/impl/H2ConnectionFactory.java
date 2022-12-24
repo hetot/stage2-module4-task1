@@ -10,6 +10,7 @@ import java.util.Properties;
 public class H2ConnectionFactory implements ConnectionFactory {
     @Override
     public Connection createConnection() {
+        Connection connection = null;
         try (InputStream input = H2ConnectionFactory.class.getClassLoader().getResourceAsStream("h2database.properties")) {
             Properties properties = new Properties();
             properties.load(input);
@@ -20,10 +21,10 @@ public class H2ConnectionFactory implements ConnectionFactory {
             String password = properties.getProperty("password");
             Class.forName(driver);
 
-            return DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return connection;
     }
 }
